@@ -1076,4 +1076,394 @@ END
 GO
 
 
-/*continue g at a later time*/
+/*7ad yekamel men hena ;-;*/
+
+
+/*needs review and checking*/
+create proc Submit_annual
+(@employee_ID int, @replacement_emp int, @start_date date, @end_date date)
+as 
+BEGIN
+  declare @x int =SCOPE_IDENTITY()
+    insert into leave(Leave_ID, date_of_request , start_date, end_date)
+    VALUES(@x,getdate(),@start_date,@end_date)
+    insert into Annual_Leave(Leave_ID,emp_ID,replacement_emp)
+    values(@x,@employee_ID,@replacement_emp)
+    
+    declare @z varchar(50) = 'pending'
+    if EXISTS(
+        SELECT 1 from Employee where employee_ID=@employee_ID and type_of_contract= 'part_time'
+    )
+    
+    begin set @z= 'rejected'
+    END
+    insert into Employee_Approve_Leave(Emp1_ID,Leave_ID,status)
+    VALUES (@employee_ID,@x,@z)
+    
+end
+
+   go
+
+   /*kamel bokra*/
+    create function Status_leaves
+    (@employee_ID int)
+ returns table 
+ as 
+ RETURN
+    (
+    select l.request_ID,l.date_of_request,l.status 
+    from leave l
+    where  exists(select 1 from Annual_Leave a where employee_ID=@employee_ID and l.request_ID=a.request_ID) or
+     exists(select 1 from Accidental_Leave a where employee_ID=@employee_ID and l.request_ID=a.request_ID)
+    
+)
+GO
+
+create procedure Upperboard_approve_annual
+    (@request_ID int,@Upperboard_ID int,@replacement_ID int)
+as
+begin
+    declare @emp_ID int
+    declare @dept_name varchar(50)
+    declare @replacement_dept varchar(50)
+    declare @replacement_status varchar(50)
+    declare @approval_status varchar(50)
+    declare @upperboard_role varchar(50)
+    
+      select top 1 @upperboard_role = e.role_name from Employee_Role e inner join Role r on e.role_name = r.role_name
+    where e.emp_ID = @Upperboard_ID and e.role_name in ('Dean', 'Vice Dean', 'President')
+    order by r.rank asc
+    
+    if (@upperboard_role is null)
+        return
+
+    select @emp_ID = emp_ID from Annual_Leave where request_ID = @request_ID
+    
+    select @dept_name = dept_name from Employee where employee_ID = @emp_ID
+      select @replacement_dept = dept_name, @replacement_status = employment_status from Employee where employee_ID = @replacement_ID
+    
+      if (@replacement_dept = @dept_name and @replacement_status != 'onleave')
+    begin
+        set @approval_status = 'approved'
+    end
+        else
+        begin
+        set @approval_status = 'rejected'
+        end
+    
+         if exists (select 1 from Employee_Approve_Leave where Emp1_ID = @Upperboard_ID and Leave_ID = @request_ID)
+    begin
+        update Employee_Approve_Leave
+        set status = @approval_status
+        where Emp1_ID = @Upperboard_ID and Leave_ID = @request_ID
+         end
+    else
+    begin
+        insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+        values (@Upperboard_ID, @request_ID, @approval_status)
+    end
+    
+        if (@approval_status = 'rejected')
+    begin
+        update Leave
+        set final_approval_status = 'rejected'
+        where request_ID = @request_ID
+    end
+end
+go
+
+
+create procedure Submit_accidental
+    (@employee_ID int, @start_date date , @end_date date)
+as
+begin
+    declare @request_ID int
+    declare @num_days int
+    declare @dept_name varchar(50)
+    declare @hr_rep_role varchar(50)
+    declare @hr_rep_ID int
+      set @num_days = datediff(day, @start_date, @end_date)
+        select @dept_name = dept_name from Employee where employee_ID = @employee_ID
+    
+        insert into Leave (date_of_request, start_date, end_date, final_approval_status)
+                   values (getdate(), @start_date, @end_date, 'pending')
+    
+        set @request_ID = scope_identity()
+        insert into Accidental_Leave (request_ID, emp_ID)
+        values (@request_ID, @employee_ID)
+        set @hr_rep_role = 'HR_Representative_' + @dept_name
+    
+    select @hr_rep_ID = e.employee_ID
+    from Employee e inner join Employee_Role r on e.employee_ID = r.emp_ID
+    where r.role_name = @hr_rep_role
+    
+    if (@hr_rep_ID is not null)
+    begin
+    insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+    values (@hr_rep_ID, @request_ID, 'pending')
+    end
+end
+go
+create procedure Submit_medical
+    (@employee_ID int,@start_date date,@end_date date,@type varchar(50),@insurance_status bit,@disability_details varchar(50),
+    @document_description varchar(50),@file_name varchar(50))
+as
+begin
+    declare @request_ID int
+    declare @num_days int
+    DECLARE @dept_name varchar(50)
+    declare @hr_rep_role varchar(50)
+    declare @hr_rep_ID int
+    declare @document_ID int
+       set @num_days = datediff(day, @start_date, @end_date)
+    
+       SELECT @dept_name = dept_name
+    from Employee
+    where employee_ID = @employee_ID
+    
+        insert into Leave (date_of_request, start_date, end_date, final_approval_status)
+        values (getdate(), @start_date, @end_date, 'pending')
+    
+        set @request_ID = scope_identity()
+    
+        insert into Medical_Leave (request_ID, insurance_status, disability_details, type, Emp_ID)
+        values (@request_ID, @insurance_status, @disability_details, @type, @employee_ID)
+    
+        insert into Document (type, description, file_name, creation_date, status, emp_ID, medical_ID, unpaid_ID)
+         values ('Medical Document', @document_description, @file_name, getdate(), 'valid', @employee_ID, @request_ID, null)
+    
+        set @hr_rep_role = 'HR_Representative_' + @dept_name
+    
+    select @hr_rep_ID = e.employee_ID
+    from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+    where er.role_name = @hr_rep_role
+       if (@hr_rep_ID is not null)
+    begin
+        insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+        values (@hr_rep_ID, @request_ID, 'pending')
+    end
+end
+go
+
+create procedure Submit_unpaid
+(@employee_ID int,@start_date date, @end_date date,@document_description varchar(50), @file_name varchar(50))
+as
+begin
+    declare @request_ID int
+    declare @num_days int
+    declare @dept_name varchar(50)
+    declare @employee_role varchar(50)
+    declare @employee_rank int
+    declare @dean_ID int
+    declare @vice_dean_ID int
+    declare @hr_rep_role varchar(50)
+    declare @hr_rep_ID int
+    declare @hr_manager_ID int
+    declare @president_ID int
+    declare @dean_status varchar(50)
+    
+    set @num_days = datediff(day, @start_date, @end_date)
+    
+    select @dept_name = dept_name
+    from Employee
+    where employee_ID = @employee_ID
+    
+    select top 1 @employee_role = e.role_name, @employee_rank = r.rank
+    from Employee_Role e inner join Role r on e.role_name = r.role_name
+    where e.emp_ID = @employee_ID
+    order by r.rank asc
+    
+    insert into Leave (date_of_request, start_date, end_date, final_approval_status)
+    values (getdate(), @start_date, @end_date, 'pending')
+    
+    set @request_ID = scope_identity()
+    
+    insert into Unpaid_Leave (request_ID, Emp_ID)
+    values (@request_ID, @employee_ID)
+    
+    insert into Document (type, description, file_name, creation_date, status, emp_ID, medical_ID, unpaid_ID)
+    values ('Memo', @document_description, @file_name, getdate(), 'valid', @employee_ID, null, @request_ID)
+    
+    if (@employee_role in ('Dean', 'Vice Dean'))
+    begin
+        select @president_ID = e.employee_ID
+        from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+        where er.role_name = 'President'
+        
+        set @hr_rep_role = 'HR_Representative_' + @dept_name
+        select @hr_rep_ID = e.employee_ID
+        from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+        where er.role_name = @hr_rep_role
+        
+        if (@president_ID is not null)
+        begin
+            insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+            values (@president_ID, @request_ID, 'pending')
+        end
+        
+        if (@hr_rep_ID is not null)
+        begin
+            insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+            values (@hr_rep_ID, @request_ID, 'pending')
+        end
+    end
+    else if (@employee_role like 'HR_Representative%')
+    begin
+        select @president_ID = e.employee_ID
+        from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+        where er.role_name = 'President'
+        
+        select @hr_manager_ID = e.employee_ID
+        from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+        where er.role_name = 'HR Manager'
+        
+        if (@president_ID is not null)
+        begin
+            insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+            values (@president_ID, @request_ID, 'pending')
+        end
+        
+        if (@hr_manager_ID is not null)
+        begin
+            insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+            values (@hr_manager_ID, @request_ID, 'pending')
+        end
+    end
+    else
+    begin
+        select @dean_ID = e.employee_ID
+        from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+        where er.role_name = 'Dean' and e.dept_name = @dept_name
+        
+        select @vice_dean_ID = e.employee_ID
+        from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+        where er.role_name = 'Vice Dean' and e.dept_name = @dept_name
+        
+        set @hr_rep_role = 'HR_Representative_' + @dept_name
+        select @hr_rep_ID = e.employee_ID
+        from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+        where er.role_name = @hr_rep_role
+        
+        if (@dean_ID is not null)
+        begin
+            select @dean_status = employment_status
+            from Employee
+            where employee_ID = @dean_ID
+        end
+        
+        if (@dean_status = 'onleave' and @vice_dean_ID is not null)
+        begin
+            insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+            values (@vice_dean_ID, @request_ID, 'pending')
+        end
+        else if (@dean_ID is not null)
+        begin
+            insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+            values (@dean_ID, @request_ID, 'pending')
+        end
+        
+        if (@hr_rep_ID is not null)
+        begin
+            insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+            values (@hr_rep_ID, @request_ID, 'pending')
+        end
+    end
+end
+go
+
+create procedure Upperboard_approve_unpaids
+    (@request_ID int,@Upperboard_ID int)
+as
+begin
+    declare @approval_status varchar(50)
+    declare @document_exists bit
+    declare @upperboard_role varchar(50)
+    
+    select top 1 @upperboard_role = er.role_name
+    from Employee_Role er inner join Role r on er.role_name = r.role_name
+    where er.emp_ID = @Upperboard_ID and er.role_name in ('Dean', 'Vice Dean', 'President')
+    order by r.rank asc
+    
+    if (@upperboard_role is null)
+        return
+    
+    select @document_exists = case when count(*) > 0 then 1 else 0 end
+    from Document
+    where unpaid_ID = @request_ID and type = 'Memo' and status = 'valid'
+    if (@document_exists = 1)
+    begin
+        set @approval_status = 'approved'
+    end
+    else
+    begin
+        set @approval_status = 'rejected'
+    end
+    
+    if exists (select 1 from Employee_Approve_Leave where Emp1_ID = @Upperboard_ID and Leave_ID = @request_ID)
+    begin
+        update Employee_Approve_Leave
+        set status = @approval_status
+        where Emp1_ID = @Upperboard_ID and Leave_ID = @request_ID
+    end
+    else
+    begin
+        insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+        values (@Upperboard_ID, @request_ID, @approval_status)
+    end
+    
+    if (@approval_status = 'rejected')
+    begin
+        update Leave
+        set final_approval_status = 'rejected'
+        where request_ID = @request_ID
+    end
+end
+go
+
+create procedure Submit_compensation
+    (@employee_ID int,@compensation_date date,@reason varchar(50),@date_of_original_workday date,@replacement_emp int)
+    as
+    begin
+    declare @request_ID int
+    declare @dept_name varchar(50)
+    declare @hr_rep_role varchar(50)
+    declare @hr_rep_ID int
+
+    select @dept_name = dept_name
+    from Employee
+    where employee_ID = @employee_ID
+    
+    insert into Leave (date_of_request, start_date, end_date, final_approval_status)
+    values (getdate(), @compensation_date, @compensation_date, 'pending')
+    
+    set @request_ID = scope_identity()
+    
+    insert into Compensation_Leave (request_ID, reason, date_of_original_workday, emp_ID, replacement_emp)
+    values (@request_ID, @reason, @date_of_original_workday, @employee_ID, @replacement_emp)
+    
+    set @hr_rep_role = 'HR_Representative_' + @dept_name
+    
+    select @hr_rep_ID = e.employee_ID
+    from Employee e inner join Employee_Role er on e.employee_ID = er.emp_ID
+    where er.role_name = @hr_rep_role
+    
+    if (@hr_rep_ID is not null)
+      begin
+        insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
+        values (@hr_rep_ID, @request_ID, 'pending')
+    end
+end
+go
+
+create procedure Dean_andHR_Evaluation
+    (@employee_ID int,@rating int,@comment varchar(50),@semester char(3))
+as
+begin
+    declare @performance_ID int
+    
+    insert into Performance (rating, comments, semester, emp_ID)
+    values (@rating, @comment, @semester, @employee_ID)
+end
+go
+
+/*finished الحمد لله*/
