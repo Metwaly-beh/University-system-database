@@ -258,9 +258,49 @@ go
 CREATE PROC dropAllProceduresFunctionsViews
 AS
 BEGIN
-DROP PROC createAllTables
-DROP PROC dropAllTables
-DROP PROC clearAllTables
+DROP VIEW allEmployeeProfiles
+DROP VIEW NoEmployeeDept
+DROP VIEW allPerformance
+DROP VIEW allRejectedMedicals
+DROP VIEW allEmployeeAttendance
+DROP FUNCTION HRLoginValidation
+DROP FUNCTION Bonus_amount
+DROP FUNCTION EmployeeLoginValidation
+DROP FUNCTION MyPerformance
+DROP FUNCTION MyAttendance
+DROP FUNCTION Last_month_payroll
+DROP FUNCTION Deductions_Attendance
+DROP FUNCTION Is_On_Leave
+DROP PROCEDURE createAllTables
+DROP PROCEDURE dropAllTables
+DROP PROCEDURE dropAllProceduresFunctionsViews
+DROP PROCEDURE clearAllTables
+DROP PROCEDURE Update_Status_Doc
+DROP PROCEDURE Remove_Deductions
+DROP PROCEDURE Update_Employment_Status
+DROP PROCEDURE Create_Holiday
+DROP PROCEDURE Add_Holiday
+DROP PROCEDURE Intitiate_Attendance
+DROP PROCEDURE Update_Attendance
+DROP PROCEDURE Remove_Holiday
+DROP PROCEDURE Remove_DayOff
+DROP PROCEDURE Remove_Approved_Leaves
+DROP PROCEDURE Replace_employee
+DROP PROCEDURE HR_approval_an_acc
+DROP PROCEDURE HR_approval_unpaid
+DROP PROCEDURE HR_approval_comp
+DROP PROCEDURE Deduction_hours
+DROP PROCEDURE Deduction_days
+DROP PROCEDURE Deduction_unpaid
+DROP PROCEDURE Add_Payroll
+DROP PROCEDURE Submit_annual
+DROP PROCEDURE Upperboard_approve_annual
+DROP PROCEDURE Submit_accidental
+DROP PROCEDURE Submit_medical
+DROP PROCEDURE Submit_unpaid
+DROP PROCEDURE Upperboard_approve_unpaids
+DROP PROCEDURE Submit_compensation
+DROP PROCEDURE Dean_andHR_Evaluation
 END
 GO
 
@@ -1034,7 +1074,7 @@ RETURN
 (
     SELECT *
     from Payroll
-    where Month(payment_date)=MONTH(dateadd(month ,-1,GETDATE())) and year(payment_date)=YEAR(DATEADD(MONTH, -1, GETDATE()))   /*the year addition was done using claude AI*/
+    where Month(payment_date)=MONTH(dateadd(month ,-1,GETDATE())) and year(payment_date)=YEAR(DATEADD(MONTH, -1, GETDATE()))   /*the year addition was done partially using claude AI*/
     
 )
 
@@ -1154,51 +1194,66 @@ end
 )
 GO
 
+
+
+/*procedure bayza 99% sure*/
 create procedure Upperboard_approve_annual
     (@request_ID int,@Upperboard_ID int,@replacement_ID int)
 as
 begin
-    declare @emp_ID int
-    declare @dept_name varchar(50)
-    declare @replacement_dept varchar(50)
-    declare @replacement_status varchar(50)
-    declare @approval_status varchar(50)
-    declare @upperboard_role varchar(50)
+    declare @x int
+    declare @y varchar(50)
+    declare @z varchar(50)
+    declare @zs varchar(50)
+    declare @as varchar(50)
+    declare @w varchar(50)
+    declare @j date
+    declare @k date
+    declare @i bit
     
-      select top 1 @upperboard_role = e.role_name from Employee_Role e inner join Role r on e.role_name = r.role_name
+    select start_date=@j , end_date=@k from Leave  where request_ID=@replacement_ID
+    set @i = dbo.Is_On_Leave(@replacement_ID,@j,@k)
+    if(@i=1)
+    begin return end
+    
+    begin 
+    return
+    end
+    
+      select top 1 @w = e.role_name from Employee_Role e inner join Role r on e.role_name = r.role_name
     where e.emp_ID = @Upperboard_ID and e.role_name in ('Dean', 'Vice Dean', 'President')
     order by r.rank asc
     
-    if (@upperboard_role is null)
+    if (@w is null)
         return
 
-    select @emp_ID = emp_ID from Annual_Leave where request_ID = @request_ID
+    select @x = emp_ID from Annual_Leave where request_ID = @request_ID
     
-    select @dept_name = dept_name from Employee where employee_ID = @emp_ID
-      select @replacement_dept = dept_name, @replacement_status = employment_status from Employee where employee_ID = @replacement_ID
+    select @y = dept_name from Employee where employee_ID = @x
+      select @z = dept_name, @zs = employment_status from Employee where employee_ID = @replacement_ID
     
-      if (@replacement_dept = @dept_name and @replacement_status != 'onleave')
+      if (@z = @y and @zs != 'onleave')
     begin
-        set @approval_status = 'approved'
+        set @as = 'approved'
     end
         else
         begin
-        set @approval_status = 'rejected'
+        set @as = 'rejected'
         end
     
          if exists (select 1 from Employee_Approve_Leave where Emp1_ID = @Upperboard_ID and Leave_ID = @request_ID)
     begin
         update Employee_Approve_Leave
-        set status = @approval_status
+        set status = @as
         where Emp1_ID = @Upperboard_ID and Leave_ID = @request_ID
          end
     else
     begin
         insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-        values (@Upperboard_ID, @request_ID, @approval_status)
+        values (@Upperboard_ID, @request_ID, @as)
     end
     
-        if (@approval_status = 'rejected')
+        if (@as = 'rejected')
     begin
         update Leave
         set final_approval_status = 'rejected'
@@ -1212,7 +1267,7 @@ create procedure Submit_accidental
     (@employee_ID int, @start_date date , @end_date date)
 as
 begin
-    declare @request_ID int
+    declare @x int
     declare @num_days int
     declare @dept_name varchar(50)
     declare @hr_rep_role varchar(50)
@@ -1223,9 +1278,9 @@ begin
         insert into Leave (date_of_request, start_date, end_date, final_approval_status)
                    values (getdate(), @start_date, @end_date, 'pending')
     
-        set @request_ID = scope_identity()
+        set @x = scope_identity()
         insert into Accidental_Leave (request_ID, emp_ID)
-        values (@request_ID, @employee_ID)
+        values (@x, @employee_ID)
         set @hr_rep_role = 'HR_Representative_' + @dept_name
     
     select @hr_rep_ID = e.employee_ID
@@ -1235,7 +1290,7 @@ begin
     if (@hr_rep_ID is not null)
     begin
     insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-    values (@hr_rep_ID, @request_ID, 'pending')
+    values (@hr_rep_ID, @x, 'pending')
     end
 end
 go
@@ -1244,7 +1299,7 @@ create procedure Submit_medical
     @document_description varchar(50),@file_name varchar(50))
 as
 begin
-    declare @request_ID int
+    declare @x int
     declare @num_days int
     DECLARE @dept_name varchar(50)
     declare @hr_rep_role varchar(50)
@@ -1259,13 +1314,13 @@ begin
         insert into Leave (date_of_request, start_date, end_date, final_approval_status)
         values (getdate(), @start_date, @end_date, 'pending')
     
-        set @request_ID = scope_identity()
+        set @x = scope_identity()
     
         insert into Medical_Leave (request_ID, insurance_status, disability_details, type, Emp_ID)
-        values (@request_ID, @insurance_status, @disability_details, @type, @employee_ID)
+        values (@x, @insurance_status, @disability_details, @type, @employee_ID)
     
-        insert into Document (type, description, file_name, creation_date, status, emp_ID, medical_ID, unpaid_ID)
-         values ('Medical Document', @document_description, @file_name, getdate(), 'valid', @employee_ID, @request_ID, null)
+        insert into Document ( description, file_name, creation_date, status, emp_ID, medical_ID, unpaid_ID)
+         values ( @document_description, @file_name, getdate(), 'valid', @employee_ID, @x, null)
     
         set @hr_rep_role = 'HR_Representative_' + @dept_name
     
@@ -1275,7 +1330,7 @@ begin
        if (@hr_rep_ID is not null)
     begin
         insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-        values (@hr_rep_ID, @request_ID, 'pending')
+        values (@hr_rep_ID, @x, 'pending')
     end
 end
 go
@@ -1284,11 +1339,11 @@ create procedure Submit_unpaid
 (@employee_ID int,@start_date date, @end_date date,@document_description varchar(50), @file_name varchar(50))
 as
 begin
-    declare @request_ID int
-    declare @num_days int
+    declare @x int
+    declare @y int
     declare @dept_name varchar(50)
     declare @employee_role varchar(50)
-    declare @employee_rank int
+    declare @z int
     declare @dean_ID int
     declare @vice_dean_ID int
     declare @hr_rep_role varchar(50)
@@ -1297,13 +1352,13 @@ begin
     declare @president_ID int
     declare @dean_status varchar(50)
     
-    set @num_days = datediff(day, @start_date, @end_date)
+    set @y = datediff(day, @start_date, @end_date)
     
     select @dept_name = dept_name
     from Employee
     where employee_ID = @employee_ID
     
-    select top 1 @employee_role = e.role_name, @employee_rank = r.rank
+    select top 1 @employee_role = e.role_name, @z = r.rank
     from Employee_Role e inner join Role r on e.role_name = r.role_name
     where e.emp_ID = @employee_ID
     order by r.rank asc
@@ -1311,13 +1366,13 @@ begin
     insert into Leave (date_of_request, start_date, end_date, final_approval_status)
     values (getdate(), @start_date, @end_date, 'pending')
     
-    set @request_ID = scope_identity()
+    set @x = scope_identity()
     
     insert into Unpaid_Leave (request_ID, Emp_ID)
-    values (@request_ID, @employee_ID)
+    values (@x, @employee_ID)
     
-    insert into Document (type, description, file_name, creation_date, status, emp_ID, medical_ID, unpaid_ID)
-    values ('Memo', @document_description, @file_name, getdate(), 'valid', @employee_ID, null, @request_ID)
+    insert into Document ( description, file_name, creation_date, status, emp_ID, medical_ID, unpaid_ID)
+    values ( @document_description, @file_name, getdate(), 'valid', @employee_ID, null, @x)
     
     if (@employee_role in ('Dean', 'Vice Dean'))
     begin
@@ -1333,13 +1388,13 @@ begin
         if (@president_ID is not null)
         begin
             insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-            values (@president_ID, @request_ID, 'pending')
+            values (@president_ID, @x, 'pending')
         end
         
         if (@hr_rep_ID is not null)
         begin
             insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-            values (@hr_rep_ID, @request_ID, 'pending')
+            values (@hr_rep_ID, @x, 'pending')
         end
     end
     else if (@employee_role like 'HR_Representative%')
@@ -1355,13 +1410,13 @@ begin
         if (@president_ID is not null)
         begin
             insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-            values (@president_ID, @request_ID, 'pending')
+            values (@president_ID, @x, 'pending')
         end
         
         if (@hr_manager_ID is not null)
         begin
             insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-            values (@hr_manager_ID, @request_ID, 'pending')
+            values (@hr_manager_ID, @x, 'pending')
         end
     end
     else
@@ -1389,18 +1444,18 @@ begin
         if (@dean_status = 'onleave' and @vice_dean_ID is not null)
         begin
             insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-            values (@vice_dean_ID, @request_ID, 'pending')
+            values (@vice_dean_ID, @x, 'pending')
         end
         else if (@dean_ID is not null)
         begin
             insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-            values (@dean_ID, @request_ID, 'pending')
+            values (@dean_ID, @x, 'pending')
         end
         
         if (@hr_rep_ID is not null)
         begin
             insert into Employee_Approve_Leave (Emp1_ID, Leave_ID, status)
-            values (@hr_rep_ID, @request_ID, 'pending')
+            values (@hr_rep_ID, @x, 'pending')
         end
     end
 end
@@ -1424,7 +1479,7 @@ begin
     
     select @document_exists = case when count(*) > 0 then 1 else 0 end
     from Document
-    where unpaid_ID = @request_ID and type = 'Memo' and status = 'valid'
+    where unpaid_ID = @request_ID  and status = 'valid'
     if (@document_exists = 1)
     begin
         set @approval_status = 'approved'
