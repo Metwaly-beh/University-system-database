@@ -1074,7 +1074,14 @@ RETURN
 (
     SELECT *
     from Payroll
-    where Month(payment_date)=MONTH(dateadd(month ,-1,GETDATE())) and year(payment_date)=YEAR(DATEADD(MONTH, -1, GETDATE()))   /*the year addition was done partially using claude AI*/
+    where Month(payment_date)=MONTH(dateadd(month ,-1,GETDATE())) and year(payment_date)=YEAR(DATEADD(MONTH, -1, GETDATE()))   
+    /*the year addition was done partially using claude AI (i didnt know the syntax) as:
+        tool used:Claude AI web
+        Model:Sonnet4.5
+        tempreture: unknown
+        Top-P/nucleus: unknown
+
+        logs available per request as there is nowhere to sumbit them in the form please contact Adham Metwaly ID:61-1151   */
     
 )
 
