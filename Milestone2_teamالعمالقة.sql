@@ -1,4 +1,4 @@
-
+﻿
 /*2.1 Omar Mohamed Starts here*/
 
 CREATE DATABASE University_HR_ManagementSystem_Team_40
@@ -11,8 +11,7 @@ AS
 BEGIN
 CREATE TABLE Department(
 name VARCHAR(50) PRIMARY KEY,
-building_location VARCHAR(50),
-CHECK (name IN ('MET', 'IET', 'HR', 'Medical')),
+building_location VARCHAR(50)
 );
 
 CREATE TABLE Employee(
@@ -75,7 +74,7 @@ CREATE TABLE Leave (
     date_of_request DATE,
     start_date DATE,
     end_date DATE,
-    num_days AS DATEDIFF(DAY, start_date, end_date),
+    num_days AS DATEDIFF(DAY, start_date, end_date) +1,
     final_approval_status VARCHAR(50) DEFAULT 'pending',
     CHECK (final_approval_status IN ('approved', 'rejected', 'pending'))
 );
@@ -180,11 +179,12 @@ CHECK(rating IN(1,2,3,4,5))
 );
 
 CREATE TABLE Employee_Replace_Employee (
+Table_ID int IDENTITY(1,1),
 Emp1_ID int FOREIGN KEY  REFERENCES Employee(employee_ID),
 Emp2_ID int FOREIGN KEY  REFERENCES Employee(employee_ID),
 from_date DATE,
 to_date DATE,
-PRIMARY KEY (Emp1_ID,Emp2_ID)
+PRIMARY KEY (Table_ID,Emp1_ID,Emp2_ID)
 );
 
 CREATE TABLE Employee_Approve_Leave (
@@ -251,16 +251,16 @@ TRUNCATE TABLE Employee;
 TRUNCATE TABLE Department;
 END
 GO
+exec createAllTables
+go 
 
-EXEC clearAllTables
-GO
 
 CREATE PROC dropAllProceduresFunctionsViews
 AS
 BEGIN
-DROP PROC createAllTables;
-DROP PROC dropAllTables;
-DROP PROC clearAllTablesl
+DROP PROC createAllTables
+DROP PROC dropAllTables
+DROP PROC clearAllTables
 END
 GO
 
@@ -991,7 +991,7 @@ AS
 BEGIN
 declare @x BIT=0
 if EXISTS(
-    SELECT 1 from Employee where e.employee_ID=@employee_ID
+    SELECT 1 from Employee e where e.employee_ID=@employee_ID
     and password= @password
 )
 begin set @x=1
@@ -1008,8 +1008,7 @@ RETURN
 (
 select *
 from Performance 
-where @employee_ID=employee_ID and @semester = semester
-GROUP by employee_ID
+where @employee_ID=emp_ID and @semester = semester
 )
 
 GO
@@ -1020,9 +1019,8 @@ AS
 RETURN
 (
 select a.date, a.STATUS
-from Attendance a inner join  Employee e on a.employee_ID=e.employee_ID
-where @employee_ID=a.employee_ID and MONTH(date)=MONTH(GETDATE) and year(date)=year(GETDATE) and (DATENAME(weekday,a.date) !=e.official_day_off)
-GROUP BY a.employee_ID
+from Attendance a inner join  Employee e on a.emp_ID=e.employee_ID
+where @employee_ID=a.emp_ID and MONTH(date)=MONTH(GETDATE()) and year(date)=year(GETDATE()) and (DATENAME(weekday,a.date) !=e.official_day_off)
 )
 
 GO
@@ -1036,8 +1034,8 @@ RETURN
 (
     SELECT *
     from Payroll
-    where payment_date=MONTH(dateadd(month ,-1,GETDATE())) and year(payment_date)=YEAR(DATEADD(MONTH, -1, GETDATE()))   /*the year addition was done using claude AI*/
-    group by employee_ID
+    where Month(payment_date)=MONTH(dateadd(month ,-1,GETDATE())) and year(payment_date)=YEAR(DATEADD(MONTH, -1, GETDATE()))   /*the year addition was done using claude AI*/
+    
 )
 
 
@@ -1052,7 +1050,7 @@ RETURN
 (
     select d.date , d.amount,d.type ,d.status 
     from deduction d inner join attendance a on d.attendance_ID=a.attendance_ID
-    where @employee_ID = d.employee_ID and a.status= 'absent' and (d.date >= dateadd(month ,-@month,GETDATE()))
+    where @employee_ID = d.emp_ID and a.status= 'absent' and (d.date >= dateadd(month ,-@month,GETDATE()))
 
 )
 
@@ -1060,6 +1058,8 @@ RETURN
 GO
 
 
+
+--change leave table mafeehash emp id
 create function Is_On_Leave 
 (@employee_ID int, @from date ,@to date)
 returns bit 
@@ -1067,8 +1067,42 @@ as
 BEGIN
 declare @x BIT =0
 if exists(
-    select 1 from leave where @employee_ID=employee_ID and @from=start_date and @to = end_date and status != 'rejected'
-)
+   select 1 from Annual_Leave l1 inner join  Leave l on l1.request_ID = l.request_ID
+        where l1.emp_ID = @employee_ID 
+            and l.start_date = @from 
+            and l.end_date = @to 
+            and l.final_approval_status != 'rejected'
+    )
+    or exists(
+   select 1 from Accidental_Leave l2 inner join  Leave l on l2.request_ID = l.request_ID
+        where l2.emp_ID = @employee_ID 
+            and l.start_date = @from 
+            and l.end_date = @to 
+            and l.final_approval_status != 'rejected'
+    )
+     or exists(
+   select 1 from Medical_Leave l3 inner join  Leave l on l3.request_ID = l.request_ID
+        where l3.emp_ID = @employee_ID 
+            and l.start_date = @from 
+            and l.end_date = @to 
+            and l.final_approval_status != 'rejected'
+    )
+     or exists(
+     select 1 from Unpaid_Leave l4 inner join  Leave l on l4.request_ID = l.request_ID
+        where l4.emp_ID = @employee_ID 
+            and l.start_date = @from 
+            and l.end_date = @to 
+            and l.final_approval_status != 'rejected'
+    )
+
+     or exists(
+   select 1 from Compensation_Leave l5 inner join  Leave l on l5.request_ID = l.request_ID
+        where l5.emp_ID = @employee_ID 
+            and l.start_date = @from 
+            and l.end_date = @to 
+            and l.final_approval_status != 'rejected'
+    )
+
 begin set @x=1
 END
 RETURN @x 
@@ -1084,10 +1118,11 @@ create proc Submit_annual
 (@employee_ID int, @replacement_emp int, @start_date date, @end_date date)
 as 
 BEGIN
-  declare @x int =SCOPE_IDENTITY()
-    insert into leave(Leave_ID, date_of_request , start_date, end_date)
-    VALUES(@x,getdate(),@start_date,@end_date)
-    insert into Annual_Leave(Leave_ID,emp_ID,replacement_emp)
+  
+    insert into leave( date_of_request , start_date, end_date)
+    VALUES(getdate(),@start_date,@end_date)
+    declare @x int =SCOPE_IDENTITY()
+    insert into Annual_Leave(request_ID,emp_ID,replacement_emp)
     values(@x,@employee_ID,@replacement_emp)
     
     declare @z varchar(50) = 'pending'
@@ -1111,10 +1146,10 @@ end
  as 
  RETURN
     (
-    select l.request_ID,l.date_of_request,l.status 
+    select l.request_ID,l.date_of_request,l.final_approval_status 
     from leave l
-    where  exists(select 1 from Annual_Leave a where employee_ID=@employee_ID and l.request_ID=a.request_ID) or
-     exists(select 1 from Accidental_Leave a where employee_ID=@employee_ID and l.request_ID=a.request_ID)
+    where  exists(select 1 from Annual_Leave a where a.emp_ID=@employee_ID and l.request_ID=a.request_ID) or
+     exists(select 1 from Accidental_Leave a where a.emp_ID=@employee_ID and l.request_ID=a.request_ID)
     
 )
 GO
@@ -1464,6 +1499,6 @@ begin
     insert into Performance (rating, comments, semester, emp_ID)
     values (@rating, @comment, @semester, @employee_ID)
 end
-go
+
 
 /*finished الحمد لله*/
