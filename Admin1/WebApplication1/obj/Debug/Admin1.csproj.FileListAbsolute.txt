@@ -1,0 +1,7 @@
+C:\Adham\study\Uni\projects\database1\Admin1\WebApplication1\bin\WebApplication1.dll.config
+C:\Adham\study\Uni\projects\database1\Admin1\WebApplication1\bin\WebApplication1.dll
+C:\Adham\study\Uni\projects\database1\Admin1\WebApplication1\bin\WebApplication1.pdb
+C:\Adham\study\Uni\projects\database1\Admin1\WebApplication1\obj\Debug\Admin1.csproj.AssemblyReference.cache
+C:\Adham\study\Uni\projects\database1\Admin1\WebApplication1\obj\Debug\Admin1.csproj.CoreCompileInputs.cache
+C:\Adham\study\Uni\projects\database1\Admin1\WebApplication1\obj\Debug\WebApplication1.dll
+C:\Adham\study\Uni\projects\database1\Admin1\WebApplication1\obj\Debug\WebApplication1.pdb

@@ -67,12 +67,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CompApprove.aspx" />
+    <Content Include="deductions.aspx" />
     <Content Include="HRIndex.aspx" />
     <Content Include="LeaveApprove.aspx" />
+    <Content Include="Payroll.aspx" />
+    <Content Include="UnpaidApprove.aspx" />
     <Content Include="Web.config" />
     <Content Include="HrLogin.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompApprove.aspx.cs">
+      <DependentUpon>CompApprove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompApprove.aspx.designer.cs">
+      <DependentUpon>CompApprove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="deductions.aspx.cs">
+      <DependentUpon>deductions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deductions.aspx.designer.cs">
+      <DependentUpon>deductions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HRIndex.aspx.cs">
       <DependentUpon>HRIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -87,6 +105,13 @@
     <Compile Include="LeaveApprove.aspx.designer.cs">
       <DependentUpon>LeaveApprove.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Payroll.aspx.cs">
+      <DependentUpon>Payroll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Payroll.aspx.designer.cs">
+      <DependentUpon>Payroll.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HrLogin.aspx.cs">
       <DependentUpon>HrLogin.aspx</DependentUpon>
@@ -94,6 +119,13 @@
     </Compile>
     <Compile Include="HrLogin.aspx.designer.cs">
       <DependentUpon>HrLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UnpaidApprove.aspx.cs">
+      <DependentUpon>UnpaidApprove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UnpaidApprove.aspx.designer.cs">
+      <DependentUpon>UnpaidApprove.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
