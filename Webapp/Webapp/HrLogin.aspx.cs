@@ -40,7 +40,7 @@ namespace Webapp
                     if (result != null && Convert.ToBoolean(result))
                     {
                         Response.Write("تم");
-                        //Response.Redirect();
+                        Response.Redirect("HrIndex.aspx");
 
                     }
                     else
