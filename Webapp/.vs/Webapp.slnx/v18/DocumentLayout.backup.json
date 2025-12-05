@@ -3,27 +3,83 @@
   "WorkspaceRootPath": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\hrlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\hrlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|c:\\adham\\study\\uni\\projects\\database1\\webapp\\webapp\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|c:\\adham\\study\\uni\\projects\\database1\\webapp\\webapp\\compapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\compapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\hrindex.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\hrindex.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|c:\\adham\\study\\uni\\projects\\database1\\webapp\\webapp\\hrindex.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\hrindex.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|c:\\adham\\study\\uni\\projects\\database1\\webapp\\webapp\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|c:\\adham\\study\\uni\\projects\\database1\\webapp\\webapp\\applyannualleave.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\applyannualleave.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|c:\\adham\\study\\uni\\projects\\database1\\webapp\\webapp\\applyannualleave.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\applyannualleave.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|c:\\adham\\study\\uni\\projects\\database1\\webapp\\webapp\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\payroll.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\payroll.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Adham\\study\\Uni\\projects\\database1\\Milestone2_team\u0627\u0644\u0639\u0645\u0627\u0644\u0642\u0629.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\compapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\compapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|c:\\adham\\study\\uni\\projects\\database1\\webapp\\webapp\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\deductions.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\deductions.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\countdept.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\countdept.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\updateattendance.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\updateattendance.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\rejectedmedical.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\rejectedmedical.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\leaveapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\leaveapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\unpaidapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\unpaidapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\leaveapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\leaveapprove.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\removeresigneddeductions.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\removeresigneddeductions.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\webapp\\hrlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{432E8E3A-123E-4554-BB43-C2E312104354}|Webapp\\Webapp.csproj|solutionrelative:webapp\\hrlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Adham\\study\\Uni\\projects\\database1\\Milestone2_team\u0627\u0644\u0639\u0645\u0627\u0644\u0642\u0629.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,7 +89,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,7 +97,124 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HrIndex.aspx.cs",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\HrIndex.aspx.cs",
+              "RelativeDocumentMoniker": "Webapp\\HrIndex.aspx.cs",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\HrIndex.aspx.cs",
+              "RelativeToolTip": "Webapp\\HrIndex.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T19:04:22.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "HrIndex.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\HrIndex.aspx",
+              "RelativeDocumentMoniker": "Webapp\\HrIndex.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\HrIndex.aspx",
+              "RelativeToolTip": "Webapp\\HrIndex.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-05T16:27:35.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "index.aspx.cs",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\index.aspx.cs",
+              "RelativeDocumentMoniker": "Webapp\\index.aspx.cs",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\index.aspx.cs",
+              "RelativeToolTip": "Webapp\\index.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T18:45:29.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "index.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\index.aspx",
+              "RelativeDocumentMoniker": "Webapp\\index.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\index.aspx",
+              "RelativeToolTip": "Webapp\\index.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-05T18:12:50.387Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApplyAnnualLeave.aspx.cs",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\ApplyAnnualLeave.aspx.cs",
+              "RelativeDocumentMoniker": "Webapp\\ApplyAnnualLeave.aspx.cs",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\ApplyAnnualLeave.aspx.cs",
+              "RelativeToolTip": "Webapp\\ApplyAnnualLeave.aspx.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T19:02:16.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Home.aspx.cs",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Home.aspx.cs",
+              "RelativeDocumentMoniker": "Webapp\\Home.aspx.cs",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Home.aspx.cs",
+              "RelativeToolTip": "Webapp\\Home.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T18:38:07.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Payroll.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Payroll.aspx",
+              "RelativeDocumentMoniker": "Webapp\\Payroll.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Payroll.aspx",
+              "RelativeToolTip": "Webapp\\Payroll.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-04T22:40:56.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CountDept.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\CountDept.aspx",
+              "RelativeDocumentMoniker": "Webapp\\CountDept.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\CountDept.aspx",
+              "RelativeToolTip": "Webapp\\CountDept.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-05T18:13:32.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplyAnnualLeave.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\ApplyAnnualLeave.aspx",
+              "RelativeDocumentMoniker": "Webapp\\ApplyAnnualLeave.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\ApplyAnnualLeave.aspx",
+              "RelativeToolTip": "Webapp\\ApplyAnnualLeave.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-05T18:21:30.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "CompApprove.aspx",
               "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\CompApprove.aspx",
               "RelativeDocumentMoniker": "Webapp\\CompApprove.aspx",
@@ -54,44 +227,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HrLogin.aspx",
-              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\HrLogin.aspx",
-              "RelativeDocumentMoniker": "Webapp\\HrLogin.aspx",
-              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\HrLogin.aspx*",
-              "RelativeToolTip": "Webapp\\HrLogin.aspx*",
+              "DocumentIndex": 9,
+              "Title": "Home.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Home.aspx",
+              "RelativeDocumentMoniker": "Webapp\\Home.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Home.aspx",
+              "RelativeToolTip": "Webapp\\Home.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-12-05T12:10:42.468Z",
+              "WhenOpened": "2025-12-05T18:37:44.82Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Payroll.aspx",
-              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Payroll.aspx",
-              "RelativeDocumentMoniker": "Webapp\\Payroll.aspx",
-              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Payroll.aspx",
-              "RelativeToolTip": "Webapp\\Payroll.aspx",
+              "DocumentIndex": 10,
+              "Title": "deductions.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\deductions.aspx",
+              "RelativeDocumentMoniker": "Webapp\\deductions.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\deductions.aspx",
+              "RelativeToolTip": "Webapp\\deductions.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-12-04T22:40:56.769Z"
+              "WhenOpened": "2025-12-05T16:38:02.564Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LeaveApprove.aspx",
-              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\LeaveApprove.aspx",
-              "RelativeDocumentMoniker": "Webapp\\LeaveApprove.aspx",
-              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\LeaveApprove.aspx",
-              "RelativeToolTip": "Webapp\\LeaveApprove.aspx",
+              "DocumentIndex": 12,
+              "Title": "UpdateAttendance.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\UpdateAttendance.aspx",
+              "RelativeDocumentMoniker": "Webapp\\UpdateAttendance.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\UpdateAttendance.aspx",
+              "RelativeToolTip": "Webapp\\UpdateAttendance.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-12-04T22:32:42.181Z"
+              "WhenOpened": "2025-12-05T16:43:11.466Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Login.aspx",
+              "RelativeDocumentMoniker": "Webapp\\Login.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\Login.aspx",
+              "RelativeToolTip": "Webapp\\Login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-05T17:43:21.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "UnpaidApprove.aspx",
               "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\UnpaidApprove.aspx",
               "RelativeDocumentMoniker": "Webapp\\UnpaidApprove.aspx",
@@ -103,7 +291,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 15,
+              "Title": "LeaveApprove.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\LeaveApprove.aspx",
+              "RelativeDocumentMoniker": "Webapp\\LeaveApprove.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\LeaveApprove.aspx",
+              "RelativeToolTip": "Webapp\\LeaveApprove.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-04T22:32:42.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "removeResignedDeductions.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\removeResignedDeductions.aspx",
+              "RelativeDocumentMoniker": "Webapp\\removeResignedDeductions.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\removeResignedDeductions.aspx",
+              "RelativeToolTip": "Webapp\\removeResignedDeductions.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-05T16:43:05.376Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RejectedMedical.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\RejectedMedical.aspx",
+              "RelativeDocumentMoniker": "Webapp\\RejectedMedical.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\RejectedMedical.aspx",
+              "RelativeToolTip": "Webapp\\RejectedMedical.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-05T16:43:03.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "HrLogin.aspx",
+              "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\HrLogin.aspx",
+              "RelativeDocumentMoniker": "Webapp\\HrLogin.aspx",
+              "ToolTip": "C:\\Adham\\study\\Uni\\projects\\database1\\Webapp\\Webapp\\HrLogin.aspx",
+              "RelativeToolTip": "Webapp\\HrLogin.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-05T12:10:42.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "Milestone2_team\u0627\u0644\u0639\u0645\u0627\u0644\u0642\u0629.sql",
               "DocumentMoniker": "C:\\Adham\\study\\Uni\\projects\\database1\\Milestone2_team\u0627\u0644\u0639\u0645\u0627\u0644\u0642\u0629.sql",
               "RelativeDocumentMoniker": "..\\Milestone2_team\u0627\u0644\u0639\u0645\u0627\u0644\u0642\u0629.sql",

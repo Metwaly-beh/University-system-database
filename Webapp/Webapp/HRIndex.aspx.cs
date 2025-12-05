@@ -13,5 +13,14 @@ namespace Webapp
         {
 
         }
+
+        protected void b1(object sender, EventArgs e)
+        {
+            Response.Redirect("HrLogin.aspx");
+        }
+        protected void b2(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
     }
 }
