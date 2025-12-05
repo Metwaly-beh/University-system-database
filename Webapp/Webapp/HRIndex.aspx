@@ -89,8 +89,10 @@
             font-size: 14px;
             color: #ff4d4d;
         }
-
-       
+     /*   .lightmode {
+    filter: invert(1) hue-rotate(180deg);
+}
+    bayez 5ales   */
     </style>
 </head>
 <body>
@@ -107,7 +109,13 @@
 <a href="UnpaidApprove.aspx">Unpaid Approve</a>
 <a href="deductions.aspx">Deductions</a>
 <a href="Payroll.aspx">Payroll</a>
+
 </div>
+  <!--
+      bayez gamed we shaklo mo2ref wana msh ader akamel ;-;
+      <button type="button" onclick="document.body.classList.toggle('lightmode')">
+    🌗 Toggle Theme
+</button> -->
 <span class="hr-msg">😈 HR is watching....</span>
 </div>
 
@@ -140,6 +148,7 @@
         <!-- Footer -->
         <div class="footer">
             © شركة المرعبين المحدودة 
+            </br> by el fanan #1 Hr hater
             
         </div>
 

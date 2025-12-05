@@ -25,9 +25,10 @@
             <a href="ViewDeductions.aspx" class="menu-link">Deductions</a>
             <a href="ApplyAnnualLeave.aspx" class="menu-link">Apply for Leave</a>
             <a href="ViewLeaveStatus.aspx" class="menu-link">Leave Status</a>
+            <a href="AcademicPart2.aspx" class="menu-link">Other</a>
         </div>
 
-        <a href="Login.aspx" class="logout">Log Out</a>
+        <a href="index.aspx" class="logout">Log Out</a>
     </form>
 </body>
 </html>

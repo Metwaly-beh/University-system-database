@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="AcademicPart2.aspx" />
     <Content Include="AddHoliday.aspx" />
+    <Content Include="AdminIndex.aspx" />
     <Content Include="AdminPart2.aspx" />
     <Content Include="ApplyAnnualLeave.aspx" />
     <Content Include="CompApprove.aspx" />
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="AddHoliday.aspx.designer.cs">
       <DependentUpon>AddHoliday.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminIndex.aspx.cs">
+      <DependentUpon>AdminIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminIndex.aspx.designer.cs">
+      <DependentUpon>AdminIndex.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPart2.aspx.cs">
       <DependentUpon>AdminPart2.aspx</DependentUpon>

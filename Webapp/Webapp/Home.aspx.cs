@@ -8,7 +8,7 @@ namespace Academic_Employee_Part_1
         {
             if (Session["user_id"] == null)
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("LoginEmp.aspx");
             }
         }
     }
